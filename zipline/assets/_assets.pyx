@@ -211,7 +211,7 @@ cdef class Asset:
         ref_start = self.start_date.value
         ref_end = self.end_date.value
 
-        return ref_start <= session_label <= ref_end
+        return ref_start <= session_label.value <= ref_end
 
     def _asset_exchange_open(self, dt_minute):
         """
@@ -224,7 +224,7 @@ cdef class Asset:
         -------
         boolean: whether the asset's exchange is open at the given minute.
         """
-        calendar = self._exchange_trading_calendar_for_asset(self)
+        calendar = self._exchange_trading_calendar_for_asset()
         return calendar.is_open_on_minute(dt_minute)
 
     def _exchange_trading_calendar_for_asset(self):

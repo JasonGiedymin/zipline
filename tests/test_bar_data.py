@@ -710,7 +710,7 @@ class TestDailyBarData(WithBarDataChecks,
         bar_data = BarData(
             self.data_portal,
             lambda: self.equity_daily_bar_days[1],
-            "daily",
+            "minute",
         )
         self.check_internal_consistency(bar_data)
 

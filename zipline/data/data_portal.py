@@ -24,6 +24,7 @@ from six import iteritems
 from six.moves import reduce
 
 from zipline.assets import Asset, Future, Equity
+from zipline.data.daily_history_aggregator import DailyHistoryAggregator
 from zipline.data.us_equity_pricing import NoDataOnDate
 from zipline.data.us_equity_loader import (
     USEquityDailyHistoryLoader,
@@ -149,7 +150,9 @@ class DataPortal(object):
         if self._equity_minute_reader is not None:
             self._equity_daily_aggregator = DailyHistoryAggregator(
                 self.trading_calendar.schedule.market_open,
-                self._equity_minute_reader)
+                self._equity_minute_reader,
+                self.trading_calendar
+            )
             self._equity_minute_history_loader = USEquityMinuteHistoryLoader(
                 self.trading_calendar,
                 self._equity_minute_reader,
