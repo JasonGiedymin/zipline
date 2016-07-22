@@ -99,7 +99,7 @@ class DailyHistoryAggregator(object):
         session_label = self._trading_calendar.minute_to_session_label(dt)
 
         for asset in assets:
-            if not asset._is_alive(session_label, True):
+            if not asset._is_alive_for_session(session_label):
                 opens.append(np.NaN)
                 continue
 
